@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Passoword</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-800">
+    <nav>
+        <div class="nav flex justify-between">
+            <img src="https://image1.jdomni.in/jdomni_email/logoomni1_2011101548.png" alt="" width="200px">
+            <div class="navbar">
+                <ul class="flex justify-end gap-10 text-green-200 text-2xl mt-8 mr-10">
+                    <a href="/adminpage"><li class="cursor-pointer">Home</li></a>
+                    <a href="/about"><li class="cursor-pointer">About Us</li></a>
+                    <a href="/contact"><li class="cursor-pointer">Contact</li></a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="m-auto mt-20 border-2 p-10 w-1/4 border-yellow-400 rounded-lg">
+        <form action="/addcustomer" method="post" class="flex flex-col gap-4 align-center">
+
+            <label for="name" class="text-3xl text-slate-300 tracking-tighter mt-10">User Name</label>
+            <input type="text" name="name" class="text-xl tracking-tighter w-72 p-2 rounded-md" placeholder="User Name" required>
+            
+            <label for="name" class="text-3xl text-slate-300 tracking-tighter mt-10">Contact</label>
+            <input type="text" name="contact" class="text-xl tracking-tighter w-72 p-2 rounded-md" placeholder="Contact" required>
+
+            <input type="submit" value="Add User" class="bg-red-700 text-2xl text-white-900 rounded-lg p-1 align-center w-3/4 cursor-pointer mt-10">
+        </form>
+    </div>
+</body>
+</html>

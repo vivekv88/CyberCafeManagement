@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-600">
+    <header class="bg-blue-500 text-white py-6">
+        <h1 class="text-center text-3xl font-bold">About Us</h1>
+    </header>
+
+    <main class="container mx-auto my-10 px-5">
+        <section>
+            <h2 class="text-2xl font-semibold text-yellow-400 mb-4">Who We Are</h2>
+            <p class="text-white leading-loose">
+                We are a leading company dedicated to providing top-notch services to our clients. Our mission is to
+                deliver quality solutions while ensuring customer satisfaction. With years of experience in the industry,
+                we are proud to have built a reputation for reliability and excellence.
+            </p>
+        </section>
+
+        <section class="mt-8">
+            <h2 class="text-2xl font-semibold text-yellow-400 mb-4">Our Vision</h2>
+            <p class="text-white leading-loose">
+                Our vision is to continuously innovate and grow, making a significant impact in our industry. We aim to
+                empower businesses with our expertise and help them achieve their goals.
+            </p>
+        </section>
+
+        <section class="mt-8">
+            <h2 class="text-2xl font-semibold text-yellow-400 mb-4">Why Choose Us</h2>
+            <ul class="list-disc list-inside text-white leading-loose">
+                <li>Experienced professionals</li>
+                <li>Customer-centric approach</li>
+                <li>High-quality solutions</li>
+                <li>Commitment to excellence</li>
+            </ul>
+        </section>
+    </main>
+
+
+    
+    <footer class="bg-gray-800 text-gray-300 py-10">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- About Section -->
+            <div class="text-center md:text-left">
+                <h3 class="text-lg font-semibold text-white mb-3">About Us</h3>
+                <p class="text-sm">
+                    Welcome to our website! We are committed to delivering high-quality services to our customers. Stay connected for updates and support.
+                </p>
+            </div>
+    
+            <!-- Links Section -->
+            <div class="text-center">
+                <h3 class="text-lg font-semibold text-white mb-3">Quick Links</h3>
+                <ul class="text-sm space-y-2">
+                    <li><a href="/" class="hover:text-blue-400">Home</a></li>
+                    <li><a href="/about" class="hover:text-blue-400">About Us</a></li>
+                    <li><a href="/contact" class="hover:text-blue-400">Contact Us</a></li>
+                    <li><a href="/services" class="hover:text-blue-400">Services</a></li>
+                </ul>
+            </div>
+    
+            <!-- Contact Section -->
+            <div class="text-center md:text-left">
+                <h3 class="text-lg font-semibold text-white mb-3">Contact Us</h3>
+                <ul class="text-sm">
+                    <li>Email: <a href="mailto:support@example.com" class="hover:text-blue-400">support@example.com</a></li>
+                    <li>Phone: <a href="tel:+123456789" class="hover:text-blue-400">+1 234 567 89</a></li>
+                    <li>Address: 123, Main Street, City, Country</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="mt-8 border-t border-gray-700 pt-5 text-center text-sm">
+            &copy; <%= new Date().getFullYear() %> Your Company Name. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+
+</html>

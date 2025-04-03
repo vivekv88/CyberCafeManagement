@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-8">
+        <h1 class="text-3xl font-bold text-center mb-8">User Messages</h1>
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white shadow-md rounded-lg">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">ID</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Name</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Email</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Message</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Submitted At</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    <% messages.forEach(message => { %>
+                        <tr>
+                            <td class="px-6 py-4"><%= message.id %></td>
+                            <td class="px-6 py-4"><%= message.name %></td>
+                            <td class="px-6 py-4"><%= message.email %></td>
+                            <td class="px-6 py-4"><%= message.message %></td>
+                            <td class="px-6 py-4"><%= message.submitted_at %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

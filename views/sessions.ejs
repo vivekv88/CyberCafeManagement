@@ -1,0 +1,204 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Details</title>
+    <link rel="stylesheet" href="/public/stylesheets/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-yellow-200">
+    <div class="container mx-auto mt-10">
+        <h2 class="text-3xl text-center mb-4">Session Details</h2>
+        <table class="table-auto w-full border-collapse border border-gray-300">
+            <thead>
+                <tr>
+                    <th class="border-2 px-4 py-2 border-zinc-800">Session ID</th>
+                    <th class="border-2 px-4 py-2 border-zinc-800">User ID</th>
+                    <th class="border-2 px-4 py-2 border-zinc-800">Start Time</th>
+                    <th class="border-2 px-4 py-2 border-zinc-800">End Time</th>
+                    <th class="border-2 px-4 py-2 border-zinc-800">Total Time (Minutes)</th>
+                    <th class="border-2 px-4 py-2 border-zinc-800">Bill Amount</th>
+                    <th class="border-2 px-4 py-2 border-zinc-800">Payment Status</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+                
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Details</title>
+    <link rel="stylesheet" href="/public/stylesheets/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-yellow-200">
+
+    
+    
+    <table class="table-auto w-full border-collapse border border-gray-300">
+    <thead>
+        <tr>
+            <th class="border border-zinc-900 px-4 py-2">Session ID</th>
+            <th class="border border-zinc-900 px-4 py-2">User ID</th>
+            <th class="border border-zinc-900 px-4 py-2">Start Time</th>
+            <th class="border border-zinc-900 px-4 py-2">End Time</th>
+            <th class="border border-zinc-900 px-4 py-2">Total Time (Minutes)</th>
+            <th class="border border-zinc-900 px-4 py-2">Bill Amount</th>
+            <th class="border border-zinc-900 px-4 py-2">Payment Status</th>
+            <th class="border border-zinc-900 px-4 py-2">Actions</th>
+        </tr>
+    </thead>
+    <!--
+    <tbody>
+        <% sessions.forEach(session=> { %>
+            <tr>
+                <td class="border px-4 py-2">
+                    <%= session.session_id %>
+                </td>
+                <td class="border px-4 py-2">
+                    <%= session.user_id %>
+                </td>
+                <td class="border px-4 py-2">
+                    <%= session.start_time %>
+                </td>
+                <td class="border px-4 py-2">
+                    <%= session.end_time ? session.end_time : 'Not ended' %>
+                </td>
+                <td class="border px-4 py-2">
+                    <%= session.total_time ? session.total_time : 'Calculating...' %>
+                </td>
+                <td class="border px-4 py-2">
+                    <%= session.bill_amount ? session.bill_amount : 'Pending' %>
+                </td>
+                <td class="border px-4 py-2">
+                    <%= session.payment_status %>
+                </td>
+                <td class="border px-4 py-2">
+                    <% if (!session.start_time) { %>
+                        <button onclick="startSession('<%= session.user_id %>')"
+                            class="bg-green-500 text-white px-2 py-1 rounded">Start Session</button>
+                        <% } else if (!session.end_time) { %>
+                            <button onclick="endSession('<%= session.session_id %>')"
+                                class="bg-blue-500 text-white px-2 py-1 rounded">End Session</button>
+                            <% } else if (session.payment_status==='pending' ) { %>
+                                <button onclick="updatePayment('<%= session.session_id %>')"
+                                    class="bg-yellow-500 text-white px-2 py-1 rounded">Pay</button>
+                                <% } %>
+                </td>
+            </tr>
+            <% }) %>
+    </tbody>
+</table>
+
+<script>
+    function startSession(userId) {
+        fetch('/start-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ user_id: userId })
+        })
+            .then(res => res.json())
+            .then(data => alert(data.message))
+            .catch(err => console.error(err));
+    }
+
+    function endSession(sessionId) {
+        fetch('/end-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ session_id: sessionId })
+        })
+            .then(res => res.json())
+            .then(data => alert(data.message))
+            .catch(err => console.error(err));
+    }
+
+    function updatePayment(sessionId) {
+        fetch('/update-payment-status', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ session_id: sessionId })
+        })
+            .then(res => res.json())
+            .then(data => alert(data.message))
+            .catch(err => console.error(err));
+    }
+</script>
+    -->
+
+
+
+    <tbody>
+        <% if (Array.isArray(sessions) && sessions.length > 0) { %>
+          <% sessions.forEach(session => { %>
+            <tr>
+              <td class="border border-zinc-900 px-4 py-2"><%= session.session_id %></td>
+              <td class="border border-zinc-900 px-4 py-2"><%= session.user_id %></td>
+              <td class="border border-zinc-900 px-4 py-2"><%= session.start_time %></td>
+              <td class="border border-zinc-900 px-4 py-2"><%= session.end_time ? session.end_time : 'Not ended' %></td>
+              <td class="border border-zinc-900 px-4 py-2"><%= session.total_time ? session.total_time : 'Calculating...' %></td>
+              <td class="border border-zinc-900 px-4 py-2"><%= session.bill_amount ? session.bill_amount : 'Pending' %></td>
+              <td class="border border-zinc-900 px-4 py-2"><%= session.payment_status %></td>
+              <td class="border border-zinc-900 px-4 py-2">
+                <!-- Start Session Button -->
+                <% if (!session.start_time) { %>
+                  <form action="/start-session" method="post">
+                    <input type="hidden" name="session_id" value="<%= session.session_id %>">
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Start Session</button>
+                  </form>
+                <% } else { %>
+                  Session started
+                <% } %>
+              </td>
+              <td class="border px-4 py-2">
+                <!-- End Session Button -->
+                <% if (session.start_time && !session.end_time) { %>
+                  <form action="/end-session" method="post">
+                    <input type="hidden" name="session_id" value="<%= session.session_id %>">
+                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">End Session</button>
+                  </form>
+                <% } else { %>
+                  <%= session.end_time ? 'Session ended' : 'Not started yet' %>
+                <% } %>
+              </td>
+
+              <td>
+                <% if (session.payment_status !== 'Paid') { %>
+                    <!-- If payment status is not "Paid", show the Pay Now button -->
+                    <form action="/update-payment-status" method="POST">
+                        <input type="hidden" name="session_id" value="<%= session.session_id %>">
+                        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Pay Now</button>
+                    </form>
+                <% } else { %>
+                    <span class="text-green-500">Paid</span>
+                <% } %>
+            </td>
+
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="9" class="border px-4 py-2 text-center">No sessions available</td>
+          </tr>
+        <% } %>
+      </tbody>
+      
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="/public/stylesheets/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-yellow-400">
+    <main>
+        <div class="left m-auto mt-20 h-3/4 w-72 border-2 p-5 border-slate-700 rounded-lg ">
+            <ul>
+                <li class="text-2xl text-red-500 py-2 tracking-tighter"><a href="/dashboard">Dashboard</a></li>
+                <li class="text-2xl text-blue-500 py-2 tracking-tighter"><select name="Select" id="computer-menu"
+                        class="bg-transparent">
+                        <option value="C">Computers</option>
+                        <option value="/addcomputer" class="cursor-pointer">Add Computer</option>
+                    </select></li>
+                <li class="text-2xl text-blue-500 py-2 tracking-tighter"><select name="Select" id="user-menu"
+                        class="bg-transparent">
+                        <option value="U">Users</option>
+                        <option value="/addcustomer" class="cursor-pointer">Add User</option>
+                        <option value="/removecustomer" class="cursor-pointer">Remove User</option>
+                    </select></li>
+                <li class="text-2xl text-blue-500 py-2 tracking-tighter">
+                    <select name="Select" id="settings-menu" class="bg-transparent">
+                        <option value="S">Settings</option>
+                        <option value="/changepassword">Change Password</option>
+                    </select>
+                </li>
+                <a href="/logout">
+                    <li class="text-2xl text-blue-500 py-2 tracking-tighter"><button
+                            class="bg-red-500 w-2/4 rounded-lg text-slate-200">Log Out</button>
+                    </li>
+                </a>
+                
+            </ul>
+        </div>
+    </main>
+    <script>
+        // JavaScript for navigation
+        document.getElementById('settings-menu').addEventListener('change', function () {
+            const selectedValue = this.value;
+            if (selectedValue !== "S") {
+                window.location.href = selectedValue; // Redirect to the selected page
+            }
+            this.value = "S";
+        });
+        document.getElementById('computer-menu').addEventListener('change', function () {
+            const selectedValue = this.value;
+            if (selectedValue !== "C") {
+                window.location.href = selectedValue; // Redirect to the selected page
+            }
+
+            this.value = "C";
+        });
+        document.getElementById('user-menu').addEventListener('change', function () {
+            const selectedValue = this.value;
+            if (selectedValue !== "U") {
+                window.location.href = selectedValue; // Redirect to the selected page
+            }
+            this.value = "U";
+        });
+    </script>
+</body>
+
+</html>
