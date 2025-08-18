@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { data, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import Dashboard from './Dashboard';
 
@@ -11,8 +11,10 @@ function Home() {
     e.preventDefault();
 
     try{
-      const response = await axios.post('http://localhost:5173/api/login', { email,password } );
-      navigate('/Dashboard')
+      const response = await axios.post('http://localhost:3000/api/adminlogin', data );
+      console.log(response);
+      
+      navigate('/dashboard')
     }catch(error){
       console.log(error);
       alert("Invalid credentials");
