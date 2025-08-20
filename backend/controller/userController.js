@@ -1,8 +1,8 @@
 import userModel from '../models/user-model.js'
 
-const addUser = async (req,res) => {
+const addUser = async (req, res) => {
 
-    const {name,address,id,computer,email,mobile} = req.body;
+    const { name, address, id, computer, email, mobile } = req.body;
 
     const user = new userModel({
         name: name,
@@ -17,4 +17,13 @@ const addUser = async (req,res) => {
     console.log(user);
 }
 
-export {addUser};
+const getUser = async (req, res) => {
+    try {
+        const users = await userModel.find();
+        res.json(users); // send users back to frontend
+    } catch (err) {
+        res.status(500).json({ error: "Server error" });
+    }
+}
+
+export { addUser, getUser };
