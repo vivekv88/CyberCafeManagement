@@ -34,28 +34,27 @@ function UserTable() {
           DIG-OS/Admin Panel
         </h1>
         <ul className="flex gap-5 flex-col ml-[40px] text-xl font-semibold text-white font-serif">
-          <Link
+          <Link to={"/dashboard"}
             onClick={() => setMenu("Dashboard")}
             className={menu === "Dashboard" ? "active" : ""}
           >
             Dashboard
           </Link>
-          <a
-            href="#users"
+          <Link to={"/dashboard/users"}
             onClick={() => setMenu("Users")}
             className={menu === "Users" ? "active" : ""}
           >
             Users
-          </a>
+          </Link>
           <a
-            href="#computers"
+            href="/computers"
             onClick={() => setMenu("Computers")}
             className={menu === "Computers" ? "active" : ""}
           >
             Computers
           </a>
           <a
-            href="#Status"
+            href="/Status"
             onClick={() => setMenu("Status")}
             className={menu === "Status" ? "active" : ""}
           >
