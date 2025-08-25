@@ -10,6 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use("/api",userRouter)
 app.use("/api",userRouter)
+app.use("/api",userRouter)
 app.use("/api",adminRouter)
 app.use("/api",adminRouter)
 

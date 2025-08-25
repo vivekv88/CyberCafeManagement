@@ -26,4 +26,16 @@ const getUser = async (req, res) => {
     }
 }
 
-export { addUser, getUser };
+// DELETE a user by ID
+const removeUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await userModel.findByIdAndDelete(id); // If MongoDB
+    res.status(200).send({ message: "User deleted successfully" });
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+};
+
+
+export { addUser, getUser, removeUser };
