@@ -65,9 +65,9 @@ function UserTable() {
       </div>
 
       {/* Table */}
-      <div className="absolute ml-[20vw] mt-[10px]">
+      <div className="absolute ml-[20vw] mt-[10px] font-serif">
         <div className="my-[20px]">
-          <button className="cursor-pointer bg-red-500 text-2xl text-white px-3 py-1 rounded hover:bg-red-700" >Add User</button>
+          <button className="cursor-pointer bg-red-500 text-xl text-white px-3 py-1 rounded-lg hover:bg-red-700" >Add User</button>
         </div>
         <table className="table-auto border-collapse border border-gray-500 w-[70vw] text-center">
           <thead className="bg-gray-200">
