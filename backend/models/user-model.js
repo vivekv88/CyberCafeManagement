@@ -6,7 +6,10 @@ const userSchema = new mongoose.Schema({
     id:{type:String,required:true},
     computer:{type:String,required:true,unique:true},
     email:{type:String,required:true,unique:true},
-    mobile:{type:String,required:true}
+    mobile:{type:String,required:true},
+    startTime:{type:Date,default:null},
+    endTime:{type:Date,default:null},
+    bill:{type:Number,default:0}
 })
 
 const userModel = mongoose.models.user || mongoose.model("user",userSchema)

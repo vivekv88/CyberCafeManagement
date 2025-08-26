@@ -6,17 +6,47 @@ function UserTable() {
   const [users, setUsers] = useState([]);
   const [menu, setMenu] = useState("Users");
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/users") // your backend API
-      .then((res) => setUsers(res.data))
-      .catch((err) => console.error(err));
-  }, []);
+  const fetchUsers = async () => {
+  try {
+    const res = await axios.get("http://localhost:3000/api/users");
+    setUsers(res.data);
+  } catch (err) {
+    console.error("Error fetching users:", err);
+  }
+};
+
+useEffect(() => {
+  fetchUsers(); // load when component mounts
+}, []);
 
   const removeUser = async (id) => {
     try {
       await axios.delete(`http://localhost:3000/api/remove/${id}`);
       setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
+    } catch (err) {
+      console.error("Error removing user:", err);
+    }
+  };
+
+
+  const startTime = async (id) => {
+    try {
+      const res = await axios.post(`http://localhost:3000/api/startTime/${id}`);
+      fetchUsers()
+      console.log(res);
+
+    } catch (err) {
+      console.error("Error removing user:", err);
+    }
+  };
+
+
+  const endTime = async (id) => {
+    try {
+      const res = await axios.post(`http://localhost:3000/api/endTime/${id}`);
+      fetchUsers()
+      console.log(res);
+      
     } catch (err) {
       console.error("Error removing user:", err);
     }
@@ -64,11 +94,11 @@ function UserTable() {
       </div>
 
       {/* Table */}
-      <div className="absolute ml-[20vw] mt-[10px] font-serif">
-        <div className="my-[20px]">
+      <div className="absolute bg-cyan-50 h-full w-[85vw] ml-[15vw] font-serif">
+        <div className="mt-[10vh] mx-[7.5vw] mb-[20px]">
           <button className="cursor-pointer bg-red-500 text-xl text-white px-3 py-1 rounded-lg hover:bg-red-700" >Add User</button>
         </div>
-        <table className="table-auto border-collapse border border-gray-500 w-[70vw] text-center">
+        <table className="table-auto border-collapse m-auto border border-gray-500 w-[70vw] text-center">
           <thead className="bg-gray-200">
             <tr>
               <th className="border border-gray-500 px-4 py-2">S.No.</th>
@@ -78,6 +108,9 @@ function UserTable() {
               <th className="border border-gray-500 px-4 py-2">Computer</th>
               <th className="border border-gray-500 px-4 py-2">Email</th>
               <th className="border border-gray-500 px-4 py-2">Mobile No.</th>
+              <th className="border border-gray-500 px-4 py-2">Start Time</th>
+              <th className="border border-gray-500 px-4 py-2">End Time</th>
+              <th className="border border-gray-500 px-4 py-2">Bill</th>
               <th className="border border-gray-500 px-4 py-2">Action</th>
             </tr>
           </thead>
@@ -91,6 +124,24 @@ function UserTable() {
                 <td className="border border-gray-500 px-4 py-2">{user.computer}</td>
                 <td className="border border-gray-500 px-4 py-2">{user.email}</td>
                 <td className="border border-gray-500 px-4 py-2">{user.mobile}</td>
+                <td className="border border-gray-500 px-4 py-2">
+                  <button
+                    onClick={() => startTime(user._id)}
+                    className="cursor-pointer bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700"
+                  >
+                    Start
+                  </button>
+                  {user.startTime && <div>{new Date(user.startTime).toLocaleString()}</div>}
+                </td>
+                <td className="border border-gray-500 px-4 py-2">
+                  <button
+                  onClick={() => endTime(user._id)}
+                  className="cursor-pointer bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700"
+                >
+                  End
+                </button>
+                  {user.endTime && <div>{new Date(user.endTime).toLocaleString()}</div>}</td>
+                <td className="border border-gray-500 px-4 py-2">₹{user.bill}</td>
                 <td className="border border-gray-500 px-4 py-2">
                   <button
                     onClick={() => removeUser(user._id)}
