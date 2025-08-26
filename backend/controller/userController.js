@@ -2,19 +2,26 @@ import userModel from '../models/user-model.js'
 
 const addUser = async (req, res) => {
 
-  const { name, address, id, computer, email, mobile } = req.body;
+  try {
+    const { name, address, id, computer, email, mobile } = req.body;
+    const user = new userModel({
+      name: name,
+      address: address,
+      id: id,
+      computer: computer,
+      email: email,
+      mobile: mobile
+    })
 
-  const user = new userModel({
-    name: name,
-    address: address,
-    id: id,
-    computer: computer,
-    email: email,
-    mobile: mobile
-  })
+    await user.save();
+    res.status(201).json(user);
+    console.log(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
 
-  await user.save();
-  console.log(user);
+
 }
 
 const getUser = async (req, res) => {
@@ -43,8 +50,8 @@ const startTime = async (req, res) => {
     startTime: new Date(),
     endTime: null
   },
-  {new : true}
-)
+    { new: true }
+  )
   res.json(user)
 }
 
@@ -55,7 +62,7 @@ const endTime = async (req, res) => {
   if (user.startTime) {
     user.endTime = new Date();
     const duration = Math.ceil((user.endTime - user.startTime) / 60000);
-    let amount = duration * 2; 
+    let amount = duration * 2;
 
     amount = Number(amount.toFixed(2));
 

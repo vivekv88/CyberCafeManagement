@@ -96,7 +96,7 @@ useEffect(() => {
       {/* Table */}
       <div className="absolute bg-cyan-50 h-full w-[85vw] ml-[15vw] font-serif">
         <div className="mt-[10vh] mx-[7.5vw] mb-[20px]">
-          <button className="cursor-pointer bg-red-500 text-xl text-white px-3 py-1 rounded-lg hover:bg-red-700" >Add User</button>
+          <a href="/dashboard/addUser"><button className="cursor-pointer bg-red-500 text-xl text-white px-3 py-1 rounded-lg hover:bg-red-700" >Add User</button></a>
         </div>
         <table className="table-auto border-collapse m-auto border border-gray-500 w-[70vw] text-center">
           <thead className="bg-gray-200">
