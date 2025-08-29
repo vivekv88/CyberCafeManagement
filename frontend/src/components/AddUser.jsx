@@ -72,13 +72,6 @@ function AddUser() {
                     >
                         Computers
                     </a>
-                    <a
-                        href="/Status"
-                        onClick={() => setMenu("Status")}
-                        className={menu === "Status" ? "active" : ""}
-                    >
-                        Status
-                    </a>
                 </ul>
             </div>
 

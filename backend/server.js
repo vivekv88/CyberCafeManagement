@@ -4,6 +4,7 @@ import { connectDB } from './config/db.js';
 import userRouter from './routes/userRoute.js';
 import adminRouter from './routes/adminRoute.js';
 import computerRouter from './routes/computerRoute.js';
+import statsRouter from './routes/statsRoute.js';
 const app = express();
 
 app.use(express.json());
@@ -20,6 +21,7 @@ app.use("/api",computerRouter)
 app.use("/api",computerRouter)
 app.use("/api",computerRouter)
 app.use("/api",computerRouter)
+app.use("/api",statsRouter)
 
 connectDB();
 
