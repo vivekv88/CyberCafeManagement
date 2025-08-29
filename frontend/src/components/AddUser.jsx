@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 function AddUser() {
+
+    const navigate = useNavigate();
 
     const [menu, setMenu] = useState("Users")
 
@@ -33,6 +35,7 @@ function AddUser() {
                 email: "",
                 mobile: ""
             })
+            navigate('/dashboard/users')
         } catch (error) {
             console.log(error);
             alert("Error adding User")
