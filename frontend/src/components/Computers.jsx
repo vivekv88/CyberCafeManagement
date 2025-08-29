@@ -5,7 +5,6 @@ import axios from "axios";
 function ComputerTable() {
   const [computers, setComputers] = useState([]);
   const [menu, setMenu] = useState("Users");
-  const [status,setStatus] = useState(false)
 
   const fetchComputers = async () => {
   try {
@@ -19,6 +18,14 @@ function ComputerTable() {
 useEffect(() => {
   fetchComputers(); // load when component mounts
 }, []);
+
+const toggleStatus = async (id) => {
+    const res = await axios.patch(`http://localhost:3000/api/computers/${id}/toggle`);
+
+    setComputers(prev =>
+      prev.map((computer) => (computer._id === id ? res.data : computer))
+    );
+  };
 
 
   return (
@@ -64,7 +71,7 @@ useEffect(() => {
       {/* Table */}
       <div className="absolute bg-cyan-50 h-full w-[85vw] ml-[15vw] font-serif">
         <div className="mt-[10vh] mx-[7.5vw] mb-[20px]">
-          <a href="/dashboard/addUser"><button className="cursor-pointer bg-red-500 text-xl text-white px-3 py-1 rounded-lg hover:bg-red-700" >Add User</button></a>
+          <a href="/dashboard/addUser"><button className="cursor-pointer bg-red-500 text-xl text-white px-3 py-1 rounded-lg hover:bg-red-700" >Add Computer</button></a>
         </div>
         <table className="table-auto border-collapse m-auto border border-gray-500 w-[70vw] text-center">
           <thead className="bg-gray-200">
@@ -73,6 +80,7 @@ useEffect(() => {
               <th className="border border-gray-500 px-4 py-2">System Name</th>
               <th className="border border-gray-500 px-4 py-2">Location (Rank No.)</th>
               <th className="border border-gray-500 px-4 py-2">Status</th>
+              <th className="border border-gray-500 px-4 py-2">Remove System</th>
             </tr>
           </thead>
           <tbody>
@@ -81,7 +89,29 @@ useEffect(() => {
                 <td className="border border-gray-500 px-4 py-2">{index + 1}</td>
                 <td className="border border-gray-500 px-4 py-2">{computer.systemName}</td>
                 <td className="border border-gray-500 px-4 py-2">{computer.systemLocation}</td>
-                <td className="border border-gray-500 px-4 py-2">{computer.inUse === false ? "Free" : "Busy"}</td>
+                <td className="border border-gray-500 px-4 py-2">
+              <button
+                onClick={() => toggleStatus(computer._id)}
+                style={{
+                  background: computer.inUse ? "red" : "green",
+                  color: "white",
+                  padding: "5px 10px",
+                  borderRadius: "5px",
+                  border: "none",
+                  cursor: "pointer"
+                }}
+              >
+                {computer.inUse ? "In Use" : "Free"}
+              </button>
+            </td>
+            <td className="border border-gray-500 px-4 py-2">
+                  <button
+                    onClick={() => removeUser(user._id)}
+                    className="cursor-pointer bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700"
+                  >
+                    Remove
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
