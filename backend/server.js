@@ -19,6 +19,7 @@ app.use("/api",adminRouter)
 app.use("/api",computerRouter)
 app.use("/api",computerRouter)
 app.use("/api",computerRouter)
+app.use("/api",computerRouter)
 
 connectDB();
 

@@ -28,6 +28,18 @@ const toggleStatus = async (id) => {
   };
 
 
+  const removeComputer = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/api/computers/remove/${id}`)
+      setComputers((prev) => prev.filter((computer) => computer._id !== id));
+    } catch (error) {
+      console.log(error);
+    }
+    
+
+  }
+
+
   return (
     <div>
       {/* Sidebar */}
@@ -71,7 +83,7 @@ const toggleStatus = async (id) => {
       {/* Table */}
       <div className="absolute bg-cyan-50 h-full w-[85vw] ml-[15vw] font-serif">
         <div className="mt-[10vh] mx-[7.5vw] mb-[20px]">
-          <a href="/dashboard/addUser"><button className="cursor-pointer bg-red-500 text-xl text-white px-3 py-1 rounded-lg hover:bg-red-700" >Add Computer</button></a>
+          <a href="/dashboard/addComputers"><button className="cursor-pointer bg-red-500 text-xl text-white px-3 py-1 rounded-lg hover:bg-red-700" >Add Computer</button></a>
         </div>
         <table className="table-auto border-collapse m-auto border border-gray-500 w-[70vw] text-center">
           <thead className="bg-gray-200">
@@ -106,7 +118,7 @@ const toggleStatus = async (id) => {
             </td>
             <td className="border border-gray-500 px-4 py-2">
                   <button
-                    onClick={() => removeUser(user._id)}
+                    onClick={() => removeComputer(computer._id)}
                     className="cursor-pointer bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700"
                   >
                     Remove

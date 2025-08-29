@@ -46,4 +46,15 @@ const toggleController = async (req, res) => {
 }
 
 
-export { addComputer, getComputers, toggleController };
+const removeComputer = async(req,res) => {
+    try {
+        const {id} = req.params;
+        await computerModel.findByIdAndDelete(id);
+        res.status(200).json({message:"Computer removed succesfully"});
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+export { addComputer, getComputers, toggleController,removeComputer };

@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard'
 import UserTable from './components/Users'
 import AddUser from './components/AddUser'
 import ComputerTable from './components/Computers'
+import AddComputer from './components/AddComputer'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/dashboard/users' element={<UserTable />} />
         <Route path='/dashboard/addUser' element={<AddUser />} />
         <Route path='/dashboard/computers' element={<ComputerTable />} />
+        <Route path='/dashboard/addComputers' element={<AddComputer />} />
       </Routes>
     </>
   )
