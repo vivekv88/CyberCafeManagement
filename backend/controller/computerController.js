@@ -16,5 +16,14 @@ const addComputer = async (req,res) => {
     }
 }
 
+const getComputers = async (req,res) => {
+    try {
+        const computers = await computerModel.find()
+        res.json(computers);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
-export { addComputer };
+
+export { addComputer, getComputers };

@@ -77,7 +77,7 @@ useEffect(() => {
             Users
           </Link>
           <a
-            href="/computers"
+            href="/dashboard/computers"
             onClick={() => setMenu("Computers")}
             className={menu === "Computers" ? "active" : ""}
           >

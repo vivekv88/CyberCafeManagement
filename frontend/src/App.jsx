@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 import Dashboard from './components/Dashboard'
 import UserTable from './components/Users'
 import AddUser from './components/AddUser'
+import ComputerTable from './components/Computers'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/dashboard/users' element={<UserTable />} />
         <Route path='/dashboard/addUser' element={<AddUser />} />
+        <Route path='/dashboard/computers' element={<ComputerTable />} />
       </Routes>
     </>
   )
