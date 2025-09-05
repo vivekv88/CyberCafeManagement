@@ -5,6 +5,7 @@ import userRouter from './routes/userRoute.js';
 import adminRouter from './routes/adminRoute.js';
 import computerRouter from './routes/computerRoute.js';
 import statsRouter from './routes/statsRoute.js';
+import userAccountRouter from './routes/userAcconutRoute.js';
 const app = express();
 
 app.use(express.json());
@@ -22,6 +23,8 @@ app.use("/api",computerRouter)
 app.use("/api",computerRouter)
 app.use("/api",computerRouter)
 app.use("/api",statsRouter)
+app.use("/api",userAccountRouter)
+app.use("/api",userAccountRouter)
 
 connectDB();
 
@@ -29,4 +32,8 @@ app.get("/",(req,res) => {
     res.send("I am in the game")
 })
 
-app.listen(3000);
+const port = process.env.PORT || 3000;
+
+app.listen(port,() => {
+    console.log("Server is running on : " , port)
+});
