@@ -7,17 +7,17 @@ function UserTable() {
   const [menu, setMenu] = useState("Users");
 
   const fetchUsers = async () => {
-  try {
-    const res = await axios.get("https://cybercafemanagement.onrender.com/api/users");
-    setUsers(res.data);
-  } catch (err) {
-    console.error("Error fetching users:", err);
-  }
-};
+    try {
+      const res = await axios.get("https://cybercafemanagement.onrender.com/api/users");
+      setUsers(res.data);
+    } catch (err) {
+      console.error("Error fetching users:", err);
+    }
+  };
 
-useEffect(() => {
-  fetchUsers(); // load when component mounts
-}, []);
+  useEffect(() => {
+    fetchUsers(); // load when component mounts
+  }, []);
 
   const removeUser = async (id) => {
     try {
@@ -46,7 +46,7 @@ useEffect(() => {
       const res = await axios.post(`https://cybercafemanagement.onrender.com/api/endTime/${id}`);
       fetchUsers()
       console.log(res);
-      
+
     } catch (err) {
       console.error("Error removing user:", err);
     }
@@ -64,25 +64,17 @@ useEffect(() => {
           DIG-OS/Admin Panel
         </h1>
         <ul className="flex gap-5 flex-col ml-[40px] text-xl font-semibold text-white font-serif">
-          <Link to={"/dashboard"}
-            onClick={() => setMenu("Dashboard")}
-            className={menu === "Dashboard" ? "active" : ""}
-          >
+          <Link to="/dashboard" onClick={() => setMenu("Dashboard")} className={menu === "Dashboard" ? "active" : ""}>
             Dashboard
           </Link>
-          <Link to={"/dashboard/users"}
-            onClick={() => setMenu("Users")}
-            className={menu === "Users" ? "active" : ""}
-          >
+
+          <Link to="/dashboard/users" onClick={() => setMenu("Users")} className={menu === "Users" ? "active" : ""}>
             Users
           </Link>
-          <a
-            href="/dashboard/computers"
-            onClick={() => setMenu("Computers")}
-            className={menu === "Computers" ? "active" : ""}
-          >
+
+          <Link to="/dashboard/computers" onClick={() => setMenu("Computers")} className={menu === "Computers" ? "active" : ""}>
             Computers
-          </a>
+          </Link>
         </ul>
       </div>
 
@@ -128,11 +120,11 @@ useEffect(() => {
                 </td>
                 <td className="border border-gray-500 px-4 py-2">
                   <button
-                  onClick={() => endTime(user._id)}
-                  className="cursor-pointer bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700"
-                >
-                  End
-                </button>
+                    onClick={() => endTime(user._id)}
+                    className="cursor-pointer bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700"
+                  >
+                    End
+                  </button>
                   {user.endTime && <div>{new Date(user.endTime).toLocaleString()}</div>}</td>
                 <td className="border border-gray-500 px-4 py-2">₹{user.bill}</td>
                 <td className="border border-gray-500 px-4 py-2">

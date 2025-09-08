@@ -7,19 +7,19 @@ function ComputerTable() {
   const [menu, setMenu] = useState("Users");
 
   const fetchComputers = async () => {
-  try {
-    const res = await axios.get("https://cybercafemanagement.onrender.com/api/computers");
-    setComputers(res.data);
-  } catch (err) {
-    console.error("Error fetching users:", err);
-  }
-};
+    try {
+      const res = await axios.get("https://cybercafemanagement.onrender.com/api/computers");
+      setComputers(res.data);
+    } catch (err) {
+      console.error("Error fetching users:", err);
+    }
+  };
 
-useEffect(() => {
-  fetchComputers(); // load when component mounts
-}, []);
+  useEffect(() => {
+    fetchComputers(); // load when component mounts
+  }, []);
 
-const toggleStatus = async (id) => {
+  const toggleStatus = async (id) => {
     const res = await axios.patch(`https://cybercafemanagement.onrender.com/api/computers/${id}/toggle`);
 
     setComputers(prev =>
@@ -35,7 +35,7 @@ const toggleStatus = async (id) => {
     } catch (error) {
       console.log(error);
     }
-    
+
 
   }
 
@@ -51,25 +51,17 @@ const toggleStatus = async (id) => {
           DIG-OS/Admin Panel
         </h1>
         <ul className="flex gap-5 flex-col ml-[40px] text-xl font-semibold text-white font-serif">
-          <Link to={"/dashboard"}
-            onClick={() => setMenu("Dashboard")}
-            className={menu === "Dashboard" ? "active" : ""}
-          >
+          <Link to="/dashboard" onClick={() => setMenu("Dashboard")} className={menu === "Dashboard" ? "active" : ""}>
             Dashboard
           </Link>
-          <Link to={"/dashboard/users"}
-            onClick={() => setMenu("Users")}
-            className={menu === "Users" ? "active" : ""}
-          >
+
+          <Link to="/dashboard/users" onClick={() => setMenu("Users")} className={menu === "Users" ? "active" : ""}>
             Users
           </Link>
-          <a
-            href="/dashboard/computers"
-            onClick={() => setMenu("Computers")}
-            className={menu === "Computers" ? "active" : ""}
-          >
+
+          <Link to="/dashboard/computers" onClick={() => setMenu("Computers")} className={menu === "Computers" ? "active" : ""}>
             Computers
-          </a>
+          </Link>
         </ul>
       </div>
 
@@ -95,21 +87,21 @@ const toggleStatus = async (id) => {
                 <td className="border border-gray-500 px-4 py-2">{computer.systemName}</td>
                 <td className="border border-gray-500 px-4 py-2">{computer.systemLocation}</td>
                 <td className="border border-gray-500 px-4 py-2">
-              <button
-                onClick={() => toggleStatus(computer._id)}
-                style={{
-                  background: computer.inUse ? "red" : "green",
-                  color: "white",
-                  padding: "5px 10px",
-                  borderRadius: "5px",
-                  border: "none",
-                  cursor: "pointer"
-                }}
-              >
-                {computer.inUse ? "In Use" : "Free"}
-              </button>
-            </td>
-            <td className="border border-gray-500 px-4 py-2">
+                  <button
+                    onClick={() => toggleStatus(computer._id)}
+                    style={{
+                      background: computer.inUse ? "red" : "green",
+                      color: "white",
+                      padding: "5px 10px",
+                      borderRadius: "5px",
+                      border: "none",
+                      cursor: "pointer"
+                    }}
+                  >
+                    {computer.inUse ? "In Use" : "Free"}
+                  </button>
+                </td>
+                <td className="border border-gray-500 px-4 py-2">
                   <button
                     onClick={() => removeComputer(computer._id)}
                     className="cursor-pointer bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700"

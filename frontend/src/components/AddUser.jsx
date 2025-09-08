@@ -53,25 +53,17 @@ function AddUser() {
                     DIG-OS/Admin Panel
                 </h1>
                 <ul className="flex gap-5 flex-col ml-[40px] text-xl font-semibold text-white font-serif">
-                    <Link to={"/dashboard"}
-                        onClick={() => setMenu("Dashboard")}
-                        className={menu === "Dashboard" ? "active" : ""}
-                    >
+                    <Link to="/dashboard" onClick={() => setMenu("Dashboard")} className={menu === "Dashboard" ? "active" : ""}>
                         Dashboard
                     </Link>
-                    <Link to={"/dashboard/users"}
-                        onClick={() => setMenu("Users")}
-                        className={menu === "Users" ? "active" : ""}
-                    >
+
+                    <Link to="/dashboard/users" onClick={() => setMenu("Users")} className={menu === "Users" ? "active" : ""}>
                         Users
                     </Link>
-                    <a
-                        href="/computers"
-                        onClick={() => setMenu("Computers")}
-                        className={menu === "Computers" ? "active" : ""}
-                    >
+
+                    <Link to="/dashboard/computers" onClick={() => setMenu("Computers")} className={menu === "Computers" ? "active" : ""}>
                         Computers
-                    </a>
+                    </Link>
                 </ul>
             </div>
 

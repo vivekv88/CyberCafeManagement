@@ -9,8 +9,8 @@ function AddComputer() {
     const [menu, setMenu] = useState("Users")
 
     const [formData, setFormData] = useState({
-        systemName:"",
-        systemLocation:""
+        systemName: "",
+        systemLocation: ""
     });
 
     const handleChange = async (e) => {
@@ -24,8 +24,8 @@ function AddComputer() {
             await axios.post("https://cybercafemanagement.onrender.com/api/addComputer", formData);
             alert("Computer added succesfully");
             setFormData({
-                systemName:"",
-                systemLocation:""
+                systemName: "",
+                systemLocation: ""
             })
             navigate('/dashboard/computers')
         } catch (error) {
@@ -45,25 +45,17 @@ function AddComputer() {
                     DIG-OS/Admin Panel
                 </h1>
                 <ul className="flex gap-5 flex-col ml-[40px] text-xl font-semibold text-white font-serif">
-                    <Link to={"/dashboard"}
-                        onClick={() => setMenu("Dashboard")}
-                        className={menu === "Dashboard" ? "active" : ""}
-                    >
+                    <Link to="/dashboard" onClick={() => setMenu("Dashboard")} className={menu === "Dashboard" ? "active" : ""}>
                         Dashboard
                     </Link>
-                    <Link to={"/dashboard/users"}
-                        onClick={() => setMenu("Users")}
-                        className={menu === "Users" ? "active" : ""}
-                    >
+
+                    <Link to="/dashboard/users" onClick={() => setMenu("Users")} className={menu === "Users" ? "active" : ""}>
                         Users
                     </Link>
-                    <a
-                        href="/dashboard/computers"
-                        onClick={() => setMenu("Computers")}
-                        className={menu === "Computers" ? "active" : ""}
-                    >
+
+                    <Link to="/dashboard/computers" onClick={() => setMenu("Computers")} className={menu === "Computers" ? "active" : ""}>
                         Computers
-                    </a>
+                    </Link>
                 </ul>
             </div>
 
