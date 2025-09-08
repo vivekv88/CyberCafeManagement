@@ -68,7 +68,7 @@ function ComputerTable() {
       {/* Table */}
       <div className="absolute bg-cyan-50 h-full w-[85vw] ml-[15vw] font-serif">
         <div className="mt-[10vh] mx-[7.5vw] mb-[20px]">
-          <a href="/dashboard/addComputers"><button className="cursor-pointer bg-red-500 text-xl text-white px-3 py-1 rounded-lg hover:bg-red-700" >Add Computer</button></a>
+          <Link to="/dashboard/addComputers"><button className="cursor-pointer bg-red-500 text-xl text-white px-3 py-1 rounded-lg hover:bg-red-700" >Add Computer</button></Link>
         </div>
         <table className="table-auto border-collapse m-auto border border-gray-500 w-[70vw] text-center">
           <thead className="bg-gray-200">
