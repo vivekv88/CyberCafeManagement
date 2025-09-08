@@ -39,8 +39,8 @@ const Dashboard = () => {
         <h1 className='mb-[30px] ml-[10px] text-2xl font-semibold text-gray-900 font-serif text-shadow-lg text-shadow-sky-300'>DIG-OS/Admin Panel</h1>
         <ul className='flex gap-5 flex-col ml-[40px] text-xl font-semibold text-white font-serif text-shadow-xs text-shadow-red-300 tracking-wide'>
           <Link to={"/dashboard"} onClick={() => setMenu("dashboard")} className={menu === "Dashboard" ? "active" : ""}>Dashboard</Link>
-          <a href='/dashboard/users' onClick={() => setMenu("Users")} className={menu === "Users" ? "active" : ""}>Users</a>
-          <a href='/dashboard/computers' onClick={() => setMenu("Computers")} className={menu === "Computers" ? "active" : ""}>Computers</a>
+          <a href='https://cybercafemanagement.onrender.com/dashboard/users' onClick={() => setMenu("Users")} className={menu === "Users" ? "active" : ""}>Users</a>
+          <a href='https://cybercafemanagement.onrender.com/dashboard/computers' onClick={() => setMenu("Computers")} className={menu === "Computers" ? "active" : ""}>Computers</a>
         </ul>
       </div>
       <div className='w-[2px] h-[100vh] bg-red-900 ml-[15vw] mt-[0px] relative'>
