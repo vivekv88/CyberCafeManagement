@@ -23,7 +23,7 @@ const Home = ({setShowLogin}) => {
     e.preventDefault();
 
     try {
-      const url = "http://localhost:3000/" ;
+      const url = "https://cybercafemanagement.onrender.com/" ;
       let newUrl = url
       if(currState==="Login"){
         newUrl += "api/adminLogin";

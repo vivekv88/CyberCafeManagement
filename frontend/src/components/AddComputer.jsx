@@ -21,7 +21,7 @@ function AddComputer() {
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:3000/api/addComputer", formData);
+            await axios.post("https://cybercafemanagement.onrender.com/api/addComputer", formData);
             alert("Computer added succesfully");
             setFormData({
                 systemName:"",

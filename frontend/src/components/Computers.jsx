@@ -8,7 +8,7 @@ function ComputerTable() {
 
   const fetchComputers = async () => {
   try {
-    const res = await axios.get("http://localhost:3000/api/computers");
+    const res = await axios.get("https://cybercafemanagement.onrender.com/api/computers");
     setComputers(res.data);
   } catch (err) {
     console.error("Error fetching users:", err);
@@ -20,7 +20,7 @@ useEffect(() => {
 }, []);
 
 const toggleStatus = async (id) => {
-    const res = await axios.patch(`http://localhost:3000/api/computers/${id}/toggle`);
+    const res = await axios.patch(`https://cybercafemanagement.onrender.com/api/computers/${id}/toggle`);
 
     setComputers(prev =>
       prev.map((computer) => (computer._id === id ? res.data : computer))
@@ -30,7 +30,7 @@ const toggleStatus = async (id) => {
 
   const removeComputer = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/computers/remove/${id}`)
+      await axios.delete(`https://cybercafemanagement.onrender.com/api/computers/remove/${id}`)
       setComputers((prev) => prev.filter((computer) => computer._id !== id));
     } catch (error) {
       console.log(error);

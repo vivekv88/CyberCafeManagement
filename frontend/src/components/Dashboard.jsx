@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   const getStats = async (e) => {
     try {
-      const res = await axios.get("http://localhost:3000/api/stats");
+      const res = await axios.get("https://cybercafemanagement.onrender.com/api/stats");
       setStats(res.data);
     } catch (error) {
       console.log(error);

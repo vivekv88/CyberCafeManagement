@@ -8,7 +8,7 @@ function UserTable() {
 
   const fetchUsers = async () => {
   try {
-    const res = await axios.get("http://localhost:3000/api/users");
+    const res = await axios.get("https://cybercafemanagement.onrender.com/api/users");
     setUsers(res.data);
   } catch (err) {
     console.error("Error fetching users:", err);
@@ -21,7 +21,7 @@ useEffect(() => {
 
   const removeUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/remove/${id}`);
+      await axios.delete(`https://cybercafemanagement.onrender.com/api/remove/${id}`);
       setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
     } catch (err) {
       console.error("Error removing user:", err);
@@ -31,7 +31,7 @@ useEffect(() => {
 
   const startTime = async (id) => {
     try {
-      const res = await axios.post(`http://localhost:3000/api/startTime/${id}`);
+      const res = await axios.post(`https://cybercafemanagement.onrender.com/api/startTime/${id}`);
       fetchUsers()
       console.log(res);
 
@@ -43,7 +43,7 @@ useEffect(() => {
 
   const endTime = async (id) => {
     try {
-      const res = await axios.post(`http://localhost:3000/api/endTime/${id}`);
+      const res = await axios.post(`https://cybercafemanagement.onrender.com/api/endTime/${id}`);
       fetchUsers()
       console.log(res);
       
