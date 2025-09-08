@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [menu, setMenu] = useState("Dashboard");
   const navigate = useNavigate();
   const [token, setToken] = useState("token")
-  const [stats, setStats] = useState({ computers: 0, users: 0, vacant: 0});
+  const [stats, setStats] = useState({ computers: 0, users: 0, vacant: 0 });
 
 
   const logout = async (e) => {
@@ -38,9 +38,18 @@ const Dashboard = () => {
         <Link to={'/dashboard'}><img className='w-[10vw] cursor-pointer' src="/assets/logo1.png"></img></Link>
         <h1 className='mb-[30px] ml-[10px] text-2xl font-semibold text-gray-900 font-serif text-shadow-lg text-shadow-sky-300'>DIG-OS/Admin Panel</h1>
         <ul className='flex gap-5 flex-col ml-[40px] text-xl font-semibold text-white font-serif text-shadow-xs text-shadow-red-300 tracking-wide'>
-          <Link to={"/dashboard"} onClick={() => setMenu("dashboard")} className={menu === "Dashboard" ? "active" : ""}>Dashboard</Link>
-          <a href='https://cybercafemanagement.onrender.com/dashboard/users' onClick={() => setMenu("Users")} className={menu === "Users" ? "active" : ""}>Users</a>
-          <a href='https://cybercafemanagement.onrender.com/dashboard/computers' onClick={() => setMenu("Computers")} className={menu === "Computers" ? "active" : ""}>Computers</a>
+          <Link to="/dashboard" onClick={() => setMenu("Dashboard")} className={menu === "Dashboard" ? "active" : ""}>
+            Dashboard
+          </Link>
+
+          <Link to="/dashboard/users" onClick={() => setMenu("Users")} className={menu === "Users" ? "active" : ""}>
+            Users
+          </Link>
+
+          <Link to="/dashboard/computers" onClick={() => setMenu("Computers")} className={menu === "Computers" ? "active" : ""}>
+            Computers
+          </Link>
+
         </ul>
       </div>
       <div className='w-[2px] h-[100vh] bg-red-900 ml-[15vw] mt-[0px] relative'>
