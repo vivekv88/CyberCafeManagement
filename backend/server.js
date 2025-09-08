@@ -5,7 +5,6 @@ import userRouter from './routes/userRoute.js';
 import adminRouter from './routes/adminRoute.js';
 import computerRouter from './routes/computerRoute.js';
 import statsRouter from './routes/statsRoute.js';
-import userAccountRouter from './routes/userAcconutRoute.js';
 const app = express();
 
 app.use(express.json());
