@@ -23,8 +23,6 @@ app.use("/api",computerRouter)
 app.use("/api",computerRouter)
 app.use("/api",computerRouter)
 app.use("/api",statsRouter)
-app.use("/api",userAccountRouter)
-app.use("/api",userAccountRouter)
 
 connectDB();
 
