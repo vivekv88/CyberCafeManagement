@@ -16,7 +16,7 @@ function UserTable() {
   };
 
   useEffect(() => {
-    fetchUsers(); // load when component mounts
+    fetchUsers();
   }, []);
 
   const removeUser = async (id) => {
@@ -28,117 +28,121 @@ function UserTable() {
     }
   };
 
-
   const startTime = async (id) => {
     try {
       const res = await axios.post(`https://cybercafemanagement.onrender.com/api/startTime/${id}`);
-      fetchUsers()
+      fetchUsers();
       console.log(res);
-
     } catch (err) {
-      console.error("Error removing user:", err);
+      console.error("Error starting time:", err);
     }
   };
-
 
   const endTime = async (id) => {
     try {
       const res = await axios.post(`https://cybercafemanagement.onrender.com/api/endTime/${id}`);
-      fetchUsers()
+      fetchUsers();
       console.log(res);
-
     } catch (err) {
-      console.error("Error removing user:", err);
+      console.error("Error ending time:", err);
     }
   };
 
-
   return (
-    <div>
+    <div className="flex flex-col md:flex-row">
       {/* Sidebar */}
-      <div className="fixed bg-gray-600 h-full w-[15vw]">
-        <Link to={"/dashboard"}>
-          <img className="w-[10vw] cursor-pointer" src="/assets/logo1.png" />
-        </Link>
-        <h1 className="mb-[30px] ml-[10px] text-2xl font-semibold text-gray-900 font-serif">
-          DIG-OS/Admin Panel
-        </h1>
-        <ul className="flex gap-5 flex-col ml-[40px] text-xl font-semibold text-white font-serif">
+      <div className="fixed md:static bg-gray-600 w-full md:w-[15vw] h-[10vh] md:h-full flex md:flex-col items-center md:items-start justify-between md:justify-start px-4 md:px-0">
+        <div className="flex items-center gap-2 md:flex-col md:items-start md:gap-5">
+          <Link to={"/dashboard"}>
+            <img className="w-[15vw] md:w-[10vw] cursor-pointer" src="/assets/logo1.png" alt="logo" />
+          </Link>
+          <h1 className="text-lg md:text-2xl font-semibold text-gray-900 font-serif">
+            DIG-OS/Admin Panel
+          </h1>
+        </div>
+        <ul className="hidden md:flex gap-5 flex-col ml-[40px] text-xl font-semibold text-white font-serif mt-5">
           <Link to="/dashboard" onClick={() => setMenu("Dashboard")} className={menu === "Dashboard" ? "active" : ""}>
             Dashboard
           </Link>
-
           <Link to="/dashboard/users" onClick={() => setMenu("Users")} className={menu === "Users" ? "active" : ""}>
             Users
           </Link>
-
           <Link to="/dashboard/computers" onClick={() => setMenu("Computers")} className={menu === "Computers" ? "active" : ""}>
             Computers
           </Link>
         </ul>
       </div>
 
-      {/* Table */}
-      <div className="absolute bg-cyan-50 h-full w-[85vw] ml-[15vw] font-serif">
-        <div className="mt-[10vh] mx-[7.5vw] mb-[20px]">
-          <Link to="/dashboard/addUser"><button className="cursor-pointer bg-red-500 text-xl text-white px-3 py-1 rounded-lg hover:bg-red-700" >Add User</button></Link>
+      {/* Table Section */}
+      <div className="md:absolute bg-cyan-50 min-h-screen w-full md:w-[85vw] md:ml-[15vw] font-serif p-4">
+        <div className="mt-[12vh] md:mt-[10vh] mb-4 flex justify-center md:justify-start">
+          <Link to="/dashboard/addUser">
+            <button className="cursor-pointer bg-red-500 text-lg md:text-xl text-white px-3 py-1 rounded-lg hover:bg-red-700">
+              Add User
+            </button>
+          </Link>
         </div>
-        <table className="table-auto border-collapse m-auto border border-gray-500 w-[70vw] text-center">
-          <thead className="bg-gray-200">
-            <tr>
-              <th className="border border-gray-500 px-4 py-2">S.No.</th>
-              <th className="border border-gray-500 px-4 py-2">Name</th>
-              <th className="border border-gray-500 px-4 py-2">Address</th>
-              <th className="border border-gray-500 px-4 py-2">ID Proof</th>
-              <th className="border border-gray-500 px-4 py-2">Computer</th>
-              <th className="border border-gray-500 px-4 py-2">Email</th>
-              <th className="border border-gray-500 px-4 py-2">Mobile No.</th>
-              <th className="border border-gray-500 px-4 py-2">Start Time</th>
-              <th className="border border-gray-500 px-4 py-2">End Time</th>
-              <th className="border border-gray-500 px-4 py-2">Bill</th>
-              <th className="border border-gray-500 px-4 py-2">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, index) => (
-              <tr key={user._id} className="hover:bg-gray-100">
-                <td className="border border-gray-500 px-4 py-2">{index + 1}</td>
-                <td className="border border-gray-500 px-4 py-2">{user.name}</td>
-                <td className="border border-gray-500 px-4 py-2">{user.address}</td>
-                <td className="border border-gray-500 px-4 py-2">{user.id}</td>
-                <td className="border border-gray-500 px-4 py-2">{user.computer}</td>
-                <td className="border border-gray-500 px-4 py-2">{user.email}</td>
-                <td className="border border-gray-500 px-4 py-2">{user.mobile}</td>
-                <td className="border border-gray-500 px-4 py-2">
-                  <button
-                    onClick={() => startTime(user._id)}
-                    className="cursor-pointer bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700"
-                  >
-                    Start
-                  </button>
-                  {user.startTime && <div>{new Date(user.startTime).toLocaleString()}</div>}
-                </td>
-                <td className="border border-gray-500 px-4 py-2">
-                  <button
-                    onClick={() => endTime(user._id)}
-                    className="cursor-pointer bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700"
-                  >
-                    End
-                  </button>
-                  {user.endTime && <div>{new Date(user.endTime).toLocaleString()}</div>}</td>
-                <td className="border border-gray-500 px-4 py-2">₹{user.bill}</td>
-                <td className="border border-gray-500 px-4 py-2">
-                  <button
-                    onClick={() => removeUser(user._id)}
-                    className="cursor-pointer bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700"
-                  >
-                    Remove
-                  </button>
-                </td>
+
+        {/* Responsive Table Wrapper */}
+        <div className="overflow-x-auto">
+          <table className="table-auto border-collapse border border-gray-500 w-full text-center text-sm md:text-base">
+            <thead className="bg-gray-200">
+              <tr>
+                <th className="border border-gray-500 px-2 md:px-4 py-2">S.No.</th>
+                <th className="border border-gray-500 px-2 md:px-4 py-2">Name</th>
+                <th className="border border-gray-500 px-2 md:px-4 py-2">Address</th>
+                <th className="border border-gray-500 px-2 md:px-4 py-2">ID Proof</th>
+                <th className="border border-gray-500 px-2 md:px-4 py-2">Computer</th>
+                <th className="border border-gray-500 px-2 md:px-4 py-2">Email</th>
+                <th className="border border-gray-500 px-2 md:px-4 py-2">Mobile No.</th>
+                <th className="border border-gray-500 px-2 md:px-4 py-2">Start Time</th>
+                <th className="border border-gray-500 px-2 md:px-4 py-2">End Time</th>
+                <th className="border border-gray-500 px-2 md:px-4 py-2">Bill</th>
+                <th className="border border-gray-500 px-2 md:px-4 py-2">Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {users.map((user, index) => (
+                <tr key={user._id} className="hover:bg-gray-100">
+                  <td className="border border-gray-500 px-2 md:px-4 py-2">{index + 1}</td>
+                  <td className="border border-gray-500 px-2 md:px-4 py-2">{user.name}</td>
+                  <td className="border border-gray-500 px-2 md:px-4 py-2">{user.address}</td>
+                  <td className="border border-gray-500 px-2 md:px-4 py-2">{user.id}</td>
+                  <td className="border border-gray-500 px-2 md:px-4 py-2">{user.computer}</td>
+                  <td className="border border-gray-500 px-2 md:px-4 py-2">{user.email}</td>
+                  <td className="border border-gray-500 px-2 md:px-4 py-2">{user.mobile}</td>
+                  <td className="border border-gray-500 px-2 md:px-4 py-2">
+                    <button
+                      onClick={() => startTime(user._id)}
+                      className="cursor-pointer bg-red-500 text-white px-2 md:px-3 py-1 rounded hover:bg-red-700"
+                    >
+                      Start
+                    </button>
+                    {user.startTime && <div className="text-xs md:text-sm">{new Date(user.startTime).toLocaleString()}</div>}
+                  </td>
+                  <td className="border border-gray-500 px-2 md:px-4 py-2">
+                    <button
+                      onClick={() => endTime(user._id)}
+                      className="cursor-pointer bg-red-500 text-white px-2 md:px-3 py-1 rounded hover:bg-red-700"
+                    >
+                      End
+                    </button>
+                    {user.endTime && <div className="text-xs md:text-sm">{new Date(user.endTime).toLocaleString()}</div>}
+                  </td>
+                  <td className="border border-gray-500 px-2 md:px-4 py-2">₹{user.bill}</td>
+                  <td className="border border-gray-500 px-2 md:px-4 py-2">
+                    <button
+                      onClick={() => removeUser(user._id)}
+                      className="cursor-pointer bg-red-500 text-white px-2 md:px-3 py-1 rounded hover:bg-red-700"
+                    >
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

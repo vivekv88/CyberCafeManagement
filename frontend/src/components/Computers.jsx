@@ -20,99 +20,123 @@ function ComputerTable() {
   }, []);
 
   const toggleStatus = async (id) => {
-    const res = await axios.patch(`https://cybercafemanagement.onrender.com/api/computers/${id}/toggle`);
+    const res = await axios.patch(
+      `https://cybercafemanagement.onrender.com/api/computers/${id}/toggle`
+    );
 
-    setComputers(prev =>
+    setComputers((prev) =>
       prev.map((computer) => (computer._id === id ? res.data : computer))
     );
   };
 
-
   const removeComputer = async (id) => {
     try {
-      await axios.delete(`https://cybercafemanagement.onrender.com/api/computers/remove/${id}`)
-      setComputers((prev) => prev.filter((computer) => computer._id !== id));
+      await axios.delete(
+        `https://cybercafemanagement.onrender.com/api/computers/remove/${id}`
+      );
+      setComputers((prev) =>
+        prev.filter((computer) => computer._id !== id)
+      );
     } catch (error) {
       console.log(error);
     }
-
-
-  }
-
+  };
 
   return (
-    <div>
+    <div className="flex flex-col md:flex-row">
       {/* Sidebar */}
-      <div className="fixed bg-gray-600 h-full w-[15vw]">
+      <div className="fixed md:relative bg-gray-600 h-[12vh] md:h-screen w-full md:w-[15vw] flex md:flex-col items-center md:items-start p-3">
         <Link to={"/dashboard"}>
-          <img className="w-[10vw] cursor-pointer" src="/assets/logo1.png" />
+          <img
+            className="w-[25vw] md:w-[10vw] cursor-pointer"
+            src="/assets/logo1.png"
+            alt="logo"
+          />
         </Link>
-        <h1 className="mb-[30px] ml-[10px] text-2xl font-semibold text-gray-900 font-serif">
+        <h1 className="hidden md:block mt-5 mb-[30px] ml-[10px] text-lg md:text-2xl font-semibold text-gray-900 font-serif">
           DIG-OS/Admin Panel
         </h1>
-        <ul className="flex gap-5 flex-col ml-[40px] text-xl font-semibold text-white font-serif">
-          <Link to="/dashboard" onClick={() => setMenu("Dashboard")} className={menu === "Dashboard" ? "active" : ""}>
+        <ul className="flex md:flex-col gap-4 md:gap-5 ml-0 md:ml-[40px] text-sm md:text-xl font-semibold text-white font-serif">
+          <Link
+            to="/dashboard"
+            onClick={() => setMenu("Dashboard")}
+            className={menu === "Dashboard" ? "active" : ""}
+          >
             Dashboard
           </Link>
 
-          <Link to="/dashboard/users" onClick={() => setMenu("Users")} className={menu === "Users" ? "active" : ""}>
+          <Link
+            to="/dashboard/users"
+            onClick={() => setMenu("Users")}
+            className={menu === "Users" ? "active" : ""}
+          >
             Users
           </Link>
 
-          <Link to="/dashboard/computers" onClick={() => setMenu("Computers")} className={menu === "Computers" ? "active" : ""}>
+          <Link
+            to="/dashboard/computers"
+            onClick={() => setMenu("Computers")}
+            className={menu === "Computers" ? "active" : ""}
+          >
             Computers
           </Link>
         </ul>
       </div>
 
       {/* Table */}
-      <div className="absolute bg-cyan-50 h-full w-[85vw] ml-[15vw] font-serif">
-        <div className="mt-[10vh] mx-[7.5vw] mb-[20px]">
-          <Link to="/dashboard/addComputers"><button className="cursor-pointer bg-red-500 text-xl text-white px-3 py-1 rounded-lg hover:bg-red-700" >Add Computer</button></Link>
+      <div className="md:absolute bg-cyan-50 min-h-screen w-full md:w-[85vw] md:ml-[15vw] font-serif overflow-x-auto">
+        <div className="mt-[15vh] md:mt-[10vh] mx-4 md:mx-[7.5vw] mb-[20px]">
+          <Link to="/dashboard/addComputers">
+            <button className="cursor-pointer bg-red-500 text-sm md:text-xl text-white px-3 py-1 rounded-lg hover:bg-red-700">
+              Add Computer
+            </button>
+          </Link>
         </div>
-        <table className="table-auto border-collapse m-auto border border-gray-500 w-[70vw] text-center">
-          <thead className="bg-gray-200">
-            <tr>
-              <th className="border border-gray-500 px-4 py-2">S.No.</th>
-              <th className="border border-gray-500 px-4 py-2">System Name</th>
-              <th className="border border-gray-500 px-4 py-2">Location (Rank No.)</th>
-              <th className="border border-gray-500 px-4 py-2">Status</th>
-              <th className="border border-gray-500 px-4 py-2">Remove System</th>
-            </tr>
-          </thead>
-          <tbody>
-            {computers.map((computer, index) => (
-              <tr key={computer._id} className="hover:bg-gray-100">
-                <td className="border border-gray-500 px-4 py-2">{index + 1}</td>
-                <td className="border border-gray-500 px-4 py-2">{computer.systemName}</td>
-                <td className="border border-gray-500 px-4 py-2">{computer.systemLocation}</td>
-                <td className="border border-gray-500 px-4 py-2">
-                  <button
-                    onClick={() => toggleStatus(computer._id)}
-                    style={{
-                      background: computer.inUse ? "red" : "green",
-                      color: "white",
-                      padding: "5px 10px",
-                      borderRadius: "5px",
-                      border: "none",
-                      cursor: "pointer"
-                    }}
-                  >
-                    {computer.inUse ? "In Use" : "Free"}
-                  </button>
-                </td>
-                <td className="border border-gray-500 px-4 py-2">
-                  <button
-                    onClick={() => removeComputer(computer._id)}
-                    className="cursor-pointer bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700"
-                  >
-                    Remove
-                  </button>
-                </td>
+        <div className="overflow-x-auto">
+          <table className="table-auto border-collapse m-auto border border-gray-500 w-full md:w-[70vw] text-center text-sm md:text-base">
+            <thead className="bg-gray-200">
+              <tr>
+                <th className="border border-gray-500 px-2 md:px-4 py-2">S.No.</th>
+                <th className="border border-gray-500 px-2 md:px-4 py-2">System Name</th>
+                <th className="border border-gray-500 px-2 md:px-4 py-2">Location (Rank No.)</th>
+                <th className="border border-gray-500 px-2 md:px-4 py-2">Status</th>
+                <th className="border border-gray-500 px-2 md:px-4 py-2">Remove System</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {computers.map((computer, index) => (
+                <tr key={computer._id} className="hover:bg-gray-100">
+                  <td className="border border-gray-500 px-2 md:px-4 py-2">{index + 1}</td>
+                  <td className="border border-gray-500 px-2 md:px-4 py-2">{computer.systemName}</td>
+                  <td className="border border-gray-500 px-2 md:px-4 py-2">{computer.systemLocation}</td>
+                  <td className="border border-gray-500 px-2 md:px-4 py-2">
+                    <button
+                      onClick={() => toggleStatus(computer._id)}
+                      style={{
+                        background: computer.inUse ? "red" : "green",
+                        color: "white",
+                        padding: "5px 10px",
+                        borderRadius: "5px",
+                        border: "none",
+                        cursor: "pointer",
+                      }}
+                    >
+                      {computer.inUse ? "In Use" : "Free"}
+                    </button>
+                  </td>
+                  <td className="border border-gray-500 px-2 md:px-4 py-2">
+                    <button
+                      onClick={() => removeComputer(computer._id)}
+                      className="cursor-pointer bg-red-500 text-white px-2 md:px-3 py-1 rounded hover:bg-red-700"
+                    >
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
