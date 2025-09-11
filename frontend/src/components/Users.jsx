@@ -49,33 +49,50 @@ function UserTable() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row min-h-screen">
       {/* Sidebar */}
-      <div className="fixed md:static bg-gray-600 w-full md:w-[15vw] h-[10vh] md:h-full flex md:flex-col items-center md:items-start justify-between md:justify-start px-4 md:px-0">
+      <div className="bg-gray-600 w-full md:w-[15vw] h-[10vh] md:h-screen flex md:flex-col items-center md:items-start justify-between md:justify-start px-4 py-2 md:py-6">
         <div className="flex items-center gap-2 md:flex-col md:items-start md:gap-5">
           <Link to={"/dashboard"}>
-            <img className="w-[15vw] md:w-[10vw] cursor-pointer" src="/assets/logo1.png" alt="logo" />
+            <img
+              className="w-[15vw] md:w-[10vw] cursor-pointer"
+              src="/assets/logo1.png"
+              alt="logo"
+            />
           </Link>
           <h1 className="text-lg md:text-2xl font-semibold text-gray-900 font-serif">
             DIG-OS/Admin Panel
           </h1>
         </div>
-        <ul className="hidden md:flex gap-5 flex-col ml-[40px] text-xl font-semibold text-white font-serif mt-5">
-          <Link to="/dashboard" onClick={() => setMenu("Dashboard")} className={menu === "Dashboard" ? "active" : ""}>
+        <ul className="hidden md:flex gap-5 flex-col ml-[20px] text-xl font-semibold text-white font-serif mt-5">
+          <Link
+            to="/dashboard"
+            onClick={() => setMenu("Dashboard")}
+            className={menu === "Dashboard" ? "active" : ""}
+          >
             Dashboard
           </Link>
-          <Link to="/dashboard/users" onClick={() => setMenu("Users")} className={menu === "Users" ? "active" : ""}>
+          <Link
+            to="/dashboard/users"
+            onClick={() => setMenu("Users")}
+            className={menu === "Users" ? "active" : ""}
+          >
             Users
           </Link>
-          <Link to="/dashboard/computers" onClick={() => setMenu("Computers")} className={menu === "Computers" ? "active" : ""}>
+          <Link
+            to="/dashboard/computers"
+            onClick={() => setMenu("Computers")}
+            className={menu === "Computers" ? "active" : ""}
+          >
             Computers
           </Link>
         </ul>
       </div>
 
-      {/* Table Section */}
-      <div className="md:absolute bg-cyan-50 min-h-screen w-full md:w-[85vw] md:ml-[15vw] font-serif p-4">
-        <div className="mt-[12vh] md:mt-[10vh] mb-4 flex justify-center md:justify-start">
+      {/* Main Section */}
+      <div className="bg-cyan-50 flex-1 font-serif p-4">
+        {/* Add User Button */}
+        <div className="mb-4 flex justify-center md:justify-start mt-[12vh] md:mt-0">
           <Link to="/dashboard/addUser">
             <button className="cursor-pointer bg-red-500 text-lg md:text-xl text-white px-3 py-1 rounded-lg hover:bg-red-700">
               Add User
@@ -83,7 +100,7 @@ function UserTable() {
           </Link>
         </div>
 
-        {/* Responsive Table Wrapper */}
+        {/* Responsive Table */}
         <div className="overflow-x-auto">
           <table className="table-auto border-collapse border border-gray-500 w-full text-center text-sm md:text-base">
             <thead className="bg-gray-200">
@@ -118,7 +135,11 @@ function UserTable() {
                     >
                       Start
                     </button>
-                    {user.startTime && <div className="text-xs md:text-sm">{new Date(user.startTime).toLocaleString()}</div>}
+                    {user.startTime && (
+                      <div className="text-xs md:text-sm">
+                        {new Date(user.startTime).toLocaleString()}
+                      </div>
+                    )}
                   </td>
                   <td className="border border-gray-500 px-2 md:px-4 py-2">
                     <button
@@ -127,7 +148,11 @@ function UserTable() {
                     >
                       End
                     </button>
-                    {user.endTime && <div className="text-xs md:text-sm">{new Date(user.endTime).toLocaleString()}</div>}
+                    {user.endTime && (
+                      <div className="text-xs md:text-sm">
+                        {new Date(user.endTime).toLocaleString()}
+                      </div>
+                    )}
                   </td>
                   <td className="border border-gray-500 px-2 md:px-4 py-2">₹{user.bill}</td>
                   <td className="border border-gray-500 px-2 md:px-4 py-2">
